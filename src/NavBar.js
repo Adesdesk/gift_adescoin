@@ -66,7 +66,7 @@ export default function NavBar(props) {
                         <a href="/">
                             <h2 className="text-2xl font-bold text-white">ADCN</h2>
                         </a>
-                        <div className="md:hidden">
+                        {/*<div className="md:hidden">
                             <button
                                 className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
                                 onClick={() => setNavbar(!navbar)}
@@ -101,17 +101,17 @@ export default function NavBar(props) {
                                     </svg>
                                 )}
                             </button>
-                        </div>
+                        </div>*/}
                     </div>
                 </div>
-                <div>
-                    <div
+
+                {/*<div
                         className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${navbar ? "block" : "hidden"
                             }`}
                     >
                     </div>
-                </div>
-                <div className="hidden space-x-2 md:inline-block">
+
+                {/*<div className="mt-3 space-y-2 lg:hidden md:inline-block">
 
                     <button className="inline-block w-full px-4 py-2 text-center text-gray-800 bg-white rounded-md shadow hover:bg-gray-100" onClick={connectWalletPressed}>
                         {walletAddress.length > 0 ? (
@@ -124,7 +124,21 @@ export default function NavBar(props) {
                         )}
                     </button>
                 </div>
+
+                <div className="hidden space-x-2 md:inline-block">*/}
+
+                <button className="absolute bottom-2 top-3 right-6 h-10 px-4 py-2 text-gray-800 bg-white rounded-md shadow hover:bg-gray-100" onClick={connectWalletPressed}>
+                    {walletAddress.length > 0 ? (
+                        "Connected: " +
+                        String(walletAddress).substring(0, 6) +
+                        "..." +
+                        String(walletAddress).substring(38)
+                    ) : (
+                        <span>Connect Wallet</span>
+                    )}
+                </button>
             </div>
+            {/*</div>*/}
         </nav>
     );
 }
