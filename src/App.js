@@ -3,13 +3,14 @@ import Footer from "./Footer";
 import ParticlesBg from 'particles-bg';
 
 
+
 function App() {
   return (
     <>
       <NavBar />
+      <ParticlesBg color="#ffffff" bg={true} style={{ height: "100vh" }} />
       <div>
-        <ParticlesBg color="#ffffff" bg={true} />
-        <div className="grid place-items-center container mx-auto rounded-xl shadow border p-8 m-10">
+        <div className="grid place-items-center container mx-auto rounded-xl shadow border m-11">
           <p className="text-3xl text-fuchsia-800 font-bold mb-4">
             gift_adescoin
           </p>
@@ -32,7 +33,7 @@ function App() {
                   Amount
                 </label>
                 <input className="shadow appearance-none border rounded w-full py-2 px-3 text-amber-900 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="sample: 65" />
-                <p className="grid place-items-center text-red-600 text-xs italic">Amount must be a whole number.</p>
+                <p className="grid place-items-center text-red-600 text-xs italic">Whole number amount only.</p>
               </div>
               <div className="block grid place-items-center">
                 <button className="bg-fuchsia-800 hover:bg-fuchsia-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">

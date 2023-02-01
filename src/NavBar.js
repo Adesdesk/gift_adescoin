@@ -1,7 +1,62 @@
-import { useState } from "react";
+import React from 'react';
+import { useEffect, useState } from "react";
+/*import Web3 from 'web3';*/
+import {
+    connectWallet,
+    getCurrentWalletConnected
+} from "./utils/Connect.js";
 
-export default function NavBar() {
+
+export default function NavBar(props) {
     const [navbar, setNavbar] = useState(false);
+    /*const [web3, setWeb3] = useState(null);*/
+
+    const [walletAddress, setWallet] = useState("");
+    const [status, setStatus] = useState("");
+
+    useEffect(() => {
+        async function fetchData() {
+            // We await here
+            const { address, status } = await getCurrentWalletConnected();
+            setWallet(address)
+            setStatus(status);
+            addWalletListener();
+        }
+        fetchData();
+    }, []);
+
+
+    function addWalletListener() {
+        if (window.ethereum) {
+            window.ethereum.on("accountsChanged", (accounts) => {
+                if (accounts.length > 0) {
+                    setWallet(accounts[0]);
+                    setStatus("Write something in the text-field above.");
+                } else {
+                    setWallet("");
+                    setStatus("Please link your Metamask using the <Connect wallet> button.");
+                }
+            });
+        } else {
+            setStatus(
+                <p>
+                    {" "}
+                    Oops!{" "}
+                    <a target="_blank" href={`https://metamask.io/download.html`}>
+                        Kindly install Metamask virtual Ethereum wallet, to your
+                        browser.
+                    </a>
+                </p>
+            );
+        }
+    }
+
+
+    const connectWalletPressed = async () => {
+        const walletResponse = await connectWallet();
+        setStatus(walletResponse.status);
+        setWallet(walletResponse.address);
+    };
 
     return (
         <nav className="w-full bg-fuchsia-800 shadow">
@@ -51,38 +106,23 @@ export default function NavBar() {
                 </div>
                 <div>
                     <div
-                        className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
-                            navbar ? "block" : "hidden"
-                        }`}
+                        className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${navbar ? "block" : "hidden"
+                            }`}
                     >
-                         {/* <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
-                          <li className="text-white hover:text-indigo-200">
-                                <a href="/about">About</a>
-                            </li>
-                            <li className="text-white hover:text-indigo-200">
-                                <a href="/developer">Developer</a>
-                            </li>
-                        </ul>*/}
-
-                        <div className="mt-3 space-y-2 lg:hidden md:inline-block">
-                    
-                    <a
-                        href="javascript:void(0)"
-                        className="inline-block w-full px-4 py-2 text-center text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
-                    >
-                        Connect Wallet
-                    </a>
-                </div>
                     </div>
                 </div>
                 <div className="hidden space-x-2 md:inline-block">
-                    
-                    <a
-                        href="javascript:void(0)"
-                        className="px-4 py-2 text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
-                    >
-                        Connect Wallet
-                    </a>
+
+                    <button className="inline-block w-full px-4 py-2 text-center text-gray-800 bg-white rounded-md shadow hover:bg-gray-100" onClick={connectWalletPressed}>
+                        {walletAddress.length > 0 ? (
+                            "Connected: " +
+                            String(walletAddress).substring(0, 6) +
+                            "..." +
+                            String(walletAddress).substring(38)
+                        ) : (
+                            <span>Connect Wallet</span>
+                        )}
+                    </button>
                 </div>
             </div>
         </nav>
