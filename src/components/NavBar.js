@@ -4,12 +4,12 @@ import { useEffect, useState } from "react";
 import {
     connectWallet,
     getCurrentWalletConnected
-} from "./utils/Connect.js";
+} from "../utils/Connect.js";
 
 
 export default function NavBar(props) {
-    const [navbar, setNavbar] = useState(false);
-    /*const [web3, setWeb3] = useState(null);*/
+    /*const [navbar, setNavbar] = useState(false);
+    const [web3, setWeb3] = useState(null);*/
 
     const [walletAddress, setWallet] = useState("");
     const [status, setStatus] = useState("");
@@ -60,12 +60,14 @@ export default function NavBar(props) {
 
     return (
         <nav className="w-full bg-fuchsia-800 shadow">
-            <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
+            <div className="flex py-2 justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-0">
                 <div>
-                    <div className="flex items-center justify-between py-3 md:py-5 md:block">
+                    <img className="w-full shrink w-20 h-20 py-0 px-0" src={require('./adescoin.png')} alt="adescoin" />
+                    <div className="flex items-center justify-between py-0 md:py-0 md:block">
                         <a href="/">
                             <h2 className="text-2xl font-bold text-white">ADCN</h2>
                         </a>
+
                         {/*<div className="md:hidden">
                             <button
                                 className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"

@@ -1,5 +1,5 @@
-import NavBar from "./NavBar";
-import Footer from "./Footer";
+import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 import ParticlesBg from 'particles-bg';
 
 
@@ -14,7 +14,7 @@ function App() {
           <p className="text-3xl text-fuchsia-800 font-bold mb-4">
             gift_adescoin
           </p>
-          <p className="text-justify text-slate-900 mb-8 text-lg">
+          <p className="px-3 text-justify text-slate-900 mb-8 text-lg">
             gift_adescoin decentralized application lets you interact with the adescoin smart contract. This contract
             implements a DeFi system via which Adeola gifts his custom token ADCN (adescoin) to deserving members of the public. Beneficiaries 
             of the adescoin cryptocurrency gift can also send designated amounts of the coin with others as they choose, provided 
