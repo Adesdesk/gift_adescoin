@@ -33,11 +33,11 @@ function App() {
                   Amount
                 </label>
                 <input className="shadow appearance-none border rounded w-full py-2 px-3 text-amber-900 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="sample: 65" />
-                <p className="grid place-items-center text-red-600 text-xs italic">Whole number amount only.</p>
+                <p className="grid place-items-center text-red-600 text-xs italic">Whole numbers only.</p>
               </div>
               <div className="block grid place-items-center">
                 <button className="bg-rose-900 hover:bg-rose-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
-                  Gift
+                  Gift token
                 </button>
                 
               </div>
